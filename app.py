@@ -30,12 +30,12 @@ def get_user_greeting(user_data):
 # Uncomment the function below to introduce a "CRITICAL" issue
 # that the AI reviewer should flag, causing the pipeline to fail.
 
-# def insecure_add(a, b):
+def insecure_add(a, b):
 #     """
 
 #     This is a terribly insecure function that uses eval().
 #     An AI reviewer should immediately flag this as a critical security risk.
 #     """
 #     # Using eval() on unvalidated input is a major security vulnerability.
-#     result = eval(f"{a} + {b}") 
-#     return result
+    result = eval(f"{a} + {b}") 
+    return result
