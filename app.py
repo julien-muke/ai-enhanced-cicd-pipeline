@@ -26,16 +26,16 @@ def get_user_greeting(user_data):
     except TypeError:
         return "Hello, Guest! Invalid user data provided."
 
-# --- FOR TESTING THE PIPELINE FAILURE ---
+# --- FOR TESTING THE PIPELINE FAILURE ----
 # Uncomment the function below to introduce a "CRITICAL" issue
 # that the AI reviewer should flag, causing the pipeline to fail.
 
-def insecure_add(a, b):
-    """
+# def insecure_add(a, b):
+#     """
 
-    This is a terribly insecure function that uses eval().
-    An AI reviewer should immediately flag this as a critical security risk.
-    """
-    # Using eval() on unvalidated input is a major security vulnerability.
-    result = eval(f"{a} + {b}") 
-    return result
+#     This is a terribly insecure function that uses eval().
+#     An AI reviewer should immediately flag this as a critical security risk.
+#     """
+#     # Using eval() on unvalidated input is a major security vulnerability.
+#     result = eval(f"{a} + {b}") 
+#     return result
