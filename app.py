@@ -11,20 +11,25 @@ def add_numbers(a, b):
 
 def get_user_greeting(user_data):
     """
-    Generates a greeting for a user.
-    This function works, but an AI might suggest improvements for handling
-    missing keys or different data structures.
+    Generates a greeting for a user using the safer .get() method
+    to prevent KeyErrors, satisfying AI best-practice checks.
     """
-    # A potential issue: This will fail if 'name' or 'city' is not in the dictionary.
-    # An AI should be able to point this out.
-    try:
-        name = user_data["name"]
-        city = user_data["city"]
-        return f"Hello, {name} from {city}!"
-    except KeyError:
-        return "Hello, Guest! User data is incomplete."
-    except TypeError:
+    # First, check if user_data is a dictionary. If not, it's a TypeError.
+    if not isinstance(user_data, dict):
         return "Hello, Guest! Invalid user data provided."
+
+    # Use .get() to safely access keys. It returns None if the key is missing,
+    # which we can check for to provide a complete default message.
+    name = user_data.get("name")
+    city = user_data.get("city")
+
+    # If either name or city is missing, return the default greeting.
+    if not name or not city:
+        return "Hello, Guest! User data is incomplete."
+    
+    # If both are present, return the personalized greeting.
+    return f"Hello, {name} from {city}!"
+
 
 # --- FOR TESTING THE PIPELINE FAILURE ----
 # Uncomment the function below to introduce a "CRITICAL" issue
@@ -32,10 +37,10 @@ def get_user_greeting(user_data):
 
 # def insecure_add(a, b):
 #     """
-
 #     This is a terribly insecure function that uses eval().
 #     An AI reviewer should immediately flag this as a critical security risk.
 #     """
 #     # Using eval() on unvalidated input is a major security vulnerability.
-    # result = eval(f"{a} + {b}") 
-    # return result
+#     # result = eval(f"{a} + {b}") 
+#     # return result
+
